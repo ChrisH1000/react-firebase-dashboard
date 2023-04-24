@@ -1,7 +1,7 @@
-import React
-import { UseSession } from '../firebase/UserProvider';
+import React from 'react';
+import { useSession } from '../firebase/UserProvider';
 
-const profile = () => {
+const Profile = () => {
   const { user } = useSession();
 
   if (!user) {
@@ -17,4 +17,4 @@ const profile = () => {
   )
 }
 
-export default Profile
+export default Profile;
