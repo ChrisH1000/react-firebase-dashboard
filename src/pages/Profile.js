@@ -5,11 +5,12 @@ import { firestore } from '../firebase/config';
 const Profile = () => {
   const { user } = useSession();
   const [userDocument, setUserDocument] = useState(null);
-  console.log(user)
 
   useEffect(() => {
-    const docRef = firestore.collection('users').doc('user.uid');
+    const docRef = firestore.collection('users').doc(user.uid);
+    console.log(docRef)
     docRef.get().then((document) => {
+      console.log(document)
       if (document.exists) {
         setUserDocument(document.data())
       }
