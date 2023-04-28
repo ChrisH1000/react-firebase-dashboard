@@ -8,13 +8,13 @@ const Profile = () => {
 
   useEffect(() => {
     const docRef = firestore.collection('users').doc(user.uid);
-    console.log(docRef)
-    docRef.get().then((document) => {
-      console.log(document)
-      if (document.exists) {
-        setUserDocument(document.data())
+    const unsubscribe = docRef.onSnapshot(doc => {
+      if (doc.exists) {
+        const documentData = doc.data();
+        setUserDocument(documentData);
       }
-    })
+    });
+    return unsubscribe;
   }, [user.uid]);
 
   if (!userDocument) {
