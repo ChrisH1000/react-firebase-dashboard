@@ -24,7 +24,7 @@ export const updateUserDocument = async (user) => {
   return docRef.update(user);
 }
 
-export const uploadImage = (userId, file) => {
+export const uploadImage = (userId, file, progress) => {
   return new Promise((resolve, reject) => {
     // create file reference
     const filePath = `users/${userId}/profile-image`;
@@ -35,7 +35,7 @@ export const uploadImage = (userId, file) => {
 
     uploadTask.on(
       'state_changed',
-      null,
+      (snapshot) => progress(snapshot),
       (error) => reject(error),
       () => {
         resolve(uploadTask.snapshot.ref);
