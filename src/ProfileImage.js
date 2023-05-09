@@ -14,6 +14,7 @@ export const ProfileImage = ({id}) => {
   const fileChange = async (files) => {
     const ref = await uploadImage(id, files[0], updateProgress);
     const downloadUrl = await ref.getDownloadURL();
+    console.log(downloadUrl)
     setImageUrl(downloadUrl);
   }
 

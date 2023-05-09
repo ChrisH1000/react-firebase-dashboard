@@ -19,6 +19,7 @@ const Profile = () => {
       if (doc.exists) {
         const documentData = doc.data();
         setUserDocument(documentData);
+
         const formData = Object.entries(documentData).map(entry => ({
           [entry[0]]: entry[1],
         }));
